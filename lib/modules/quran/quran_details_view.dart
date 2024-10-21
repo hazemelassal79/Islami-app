@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamic/core/provider/app_provider.dart';
-import 'package:islamic/core/theme/application_theme.dart';
-import 'package:islamic/modules/quran/quran_view.dart';
+import 'package:islamic/models/sura_details.dart';
 import 'package:provider/provider.dart';
 
 class QuranDetailsView extends StatefulWidget {
@@ -24,21 +23,23 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
     if (content.isEmpty) readFiles(args.suraNumber);
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
-    var appProvider=Provider.of<AppProvider>(context);
+    var appProvider = Provider.of<AppProvider>(context);
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(appProvider.backgroundImage()),
-         // fit: BoxFit.cover,
+          fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("اسلامي"),
+          title: const Text(
+            "اسلامي",
+          ),
         ),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 40),
-          margin: EdgeInsets.only(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+          margin: const EdgeInsets.only(
             left: 30,
             right: 30,
             top: 30,
@@ -47,7 +48,6 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
           width: mediaQuery.width,
           height: mediaQuery.height,
           decoration: BoxDecoration(
-            color: theme.colorScheme.onBackground.withOpacity(0.8),
             borderRadius: BorderRadius.circular(25),
           ),
           child: Column(
@@ -58,40 +58,41 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
                   Text(" سورة  ${args.suraName}",
                       style: theme.textTheme.bodyLarge!.copyWith(
                         color: theme.colorScheme.onSecondary,
-
                       )),
-                  SizedBox(
+                  const SizedBox(
                     width: 4,
                   ),
                   Icon(
-                      Icons.play_circle,
-                      size: 32,
-                      color: theme.colorScheme.onSecondary,
+                    Icons.play_circle,
+                    size: 32,
+                    color: theme.colorScheme.onSecondary,
                   ),
                 ],
               ),
-              Divider(
+              const Divider(
                 thickness: 1.2,
                 indent: 30,
                 endIndent: 30,
                 height: 10, //padding
               ),
               Expanded(
-                  child: ListView.builder(
-                itemBuilder: (context, index) => Text(
-                  "${allVerses[index]} (${index+1})",
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodySmall!.copyWith(
-                    color: theme.colorScheme.onSecondary,
-                    height: 1.8,
+                child: ListView.builder(
+                  itemCount: allVerses.length,
+                  itemBuilder: (context, index) => Text(
+                    "${allVerses[index]} (${index + 1})",
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodySmall!.copyWith(
+                      color: theme.colorScheme.onSecondary,
+                      height: 1.8,
+                    ),
                   ),
                 ),
-              ))
+              ),
             ],
           ),
         ),
       ),
-      );
+    );
   }
 
   readFiles(String index) async {
@@ -100,6 +101,5 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
     setState(() {
       allVerses = content.split("\n");
     });
-    print("text");
   }
 }

@@ -12,20 +12,20 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => AppProvider(),
-      child: const App(),
+      child: const IslamiApp(),
     ),
   );
 }
 
-class App extends StatelessWidget {
-  const App({super.key});
+class IslamiApp extends StatelessWidget {
+  const IslamiApp({super.key});
   @override
   Widget build(BuildContext context) {
     var appProvider = Provider.of<AppProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ApplicationTheme.LightTheme,
-      darkTheme: ApplicationTheme.DarkTheme,
+      theme:  ApplicationTheme.lightTheme,
+      darkTheme: ApplicationTheme.darkTheme,
       themeMode: appProvider.currentTheme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
@@ -34,7 +34,7 @@ class App extends StatelessWidget {
       routes: {
         SplashScreen.routeName: (context) => const SplashScreen(),
         HomeLayout.routeName: (context) => const HomeLayout(),
-        QuranDetailsView.routeName: (context) =>const QuranDetailsView(),
+        QuranDetailsView.routeName: (context) => const QuranDetailsView(),
         HadethDetailsView.routeName: (context) => const HadethDetailsView(),
       },
     );

@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class QuranItem extends StatelessWidget {
   final String SuraName;
   final String SuraNumber;
-  const QuranItem({super.key, required this.SuraName, required this.SuraNumber});
+  const QuranItem(
+      {super.key, required this.SuraName, required this.SuraNumber});
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return  Row(
+    return Row(
       children: [
         Expanded(
           child: Text(

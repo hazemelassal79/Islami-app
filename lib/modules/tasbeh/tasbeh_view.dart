@@ -5,8 +5,9 @@ class TasbehView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Center(
-      child: Text(" Tasbeh View",
+    return const Center(
+      child: Text(
+        "Comming Soon",
         style: TextStyle(
           fontSize: 50,
           fontWeight: FontWeight.w500,

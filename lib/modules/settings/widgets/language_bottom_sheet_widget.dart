@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:islamic/modules/settings/wedgit/selected_option_widget.dart';
-import 'package:islamic/modules/settings/wedgit/unselected_option_widget.dart';
+import 'package:islamic/modules/settings/widgets/selected_option_widget.dart';
+import 'package:islamic/modules/settings/widgets/unselected_option_widget.dart';
 import 'package:provider/provider.dart';
-
 import '../../../core/provider/app_provider.dart';
 
 class LanguageBottomSheetWidget extends StatelessWidget {
@@ -13,7 +12,7 @@ class LanguageBottomSheetWidget extends StatelessWidget {
     var theme = Theme.of(context);
     var appProvider = Provider.of<AppProvider>(context);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
       decoration: BoxDecoration(
         color: theme.primaryColor.withOpacity(0.8),
       ),
@@ -26,10 +25,10 @@ class LanguageBottomSheetWidget extends StatelessWidget {
               Navigator.pop(context);
             },
             child: appProvider.currentLocal == "en"
-                ? SelectedOptionWidget(selectedTitle: "english")
-                : UnSelcectedOptionWidget(unselectedTitle: "english"),
+                ? const SelectedOptionWidget(selectedTitle: "english")
+                : const UnSelcectedOptionWidget(unselectedTitle: "english"),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           GestureDetector(
@@ -38,8 +37,8 @@ class LanguageBottomSheetWidget extends StatelessWidget {
                 Navigator.pop(context);
               },
               child: appProvider.currentLocal == "en"
-                  ? UnSelcectedOptionWidget(unselectedTitle: "عربي")
-                  : SelectedOptionWidget(selectedTitle: "عربي")),
+                  ? const UnSelcectedOptionWidget(unselectedTitle: "عربي")
+                  : const SelectedOptionWidget(selectedTitle: "عربي")),
         ],
       ),
     );

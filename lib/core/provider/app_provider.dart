@@ -5,7 +5,7 @@ class AppProvider extends ChangeNotifier {
   ThemeMode currentTheme = ThemeMode.light;
   changeTheme(ThemeMode newtheme) {
     if (currentTheme == newtheme) return;
-    currentTheme == newtheme;
+    currentTheme = newtheme;
     notifyListeners();
   }
 
@@ -19,7 +19,7 @@ class AppProvider extends ChangeNotifier {
 
   changeLanguage(String newlanguage) {
     if (currentLocal == newlanguage) return;
-    currentLocal == newlanguage;
+    currentLocal = newlanguage;
     notifyListeners();
   }
 }

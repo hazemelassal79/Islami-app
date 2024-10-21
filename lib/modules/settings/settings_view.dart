@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:islamic/modules/settings/wedgit/language_bottom_sheet_widget.dart';
-import 'package:islamic/modules/settings/wedgit/settings_item.dart';
-import 'package:islamic/modules/settings/wedgit/theme_bottom_sheet_widget.dart';
+import 'package:islamic/modules/settings/widgets/language_bottom_sheet_widget.dart';
+import 'package:islamic/modules/settings/widgets/settings_item.dart';
+import 'package:islamic/modules/settings/widgets/theme_bottom_sheet_widget.dart';
 import 'package:provider/provider.dart';
 import '../../core/provider/app_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -24,6 +24,9 @@ class _SettingsViewState extends State<SettingsView> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(
         children: [
+          const SizedBox(
+            height: 35,
+          ),
           SettingsItem(
             settingOptionTitle: local.language,
             selectedOption:
@@ -32,7 +35,7 @@ class _SettingsViewState extends State<SettingsView> {
               ShowLanguageBottomSheet(context);
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           SettingsItem(
@@ -42,11 +45,11 @@ class _SettingsViewState extends State<SettingsView> {
               ShowThemeBottomSheet(context);
             },
           ),
-          GestureDetector(
-            onTap: () {
-              ShowLanguageBottomSheet(context);
-            },
-          ),
+          // GestureDetector(
+          //   onTap: () {
+          //     ShowLanguageBottomSheet(context);
+          //   },
+          // ),
         ],
       ),
     );
@@ -55,10 +58,11 @@ class _SettingsViewState extends State<SettingsView> {
 
 void ShowLanguageBottomSheet(context) {
   showModalBottomSheet(
-      context: context, builder: (context) => LanguageBottomSheetWidget());
+      context: context,
+      builder: (context) => const LanguageBottomSheetWidget());
 }
 
 void ShowThemeBottomSheet(context) {
   showModalBottomSheet(
-      context: context, builder: (context) => ThemeButoomSheetWidget());
+      context: context, builder: (context) => const ThemeButoomSheetWidget());
 }

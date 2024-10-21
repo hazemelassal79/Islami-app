@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:islamic/models/sura_details.dart';
 import 'package:islamic/modules/quran/quran_details_view.dart';
-import 'package:islamic/modules/quran/wediget/quran_item.dart';
+import 'package:islamic/modules/quran/widgets/quran_item.dart';
 
 class QuranView extends StatelessWidget {
   QuranView({super.key});
@@ -124,72 +125,67 @@ class QuranView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Center(
-      child: Column(
-        children: [
-          Image.asset("assets/images/quran_header.png"),
-          Divider(
-            color: theme.primaryColor,
-            thickness: 1.2,
-            indent: 10,
-            endIndent: 10,
-            height: 5, //padding
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  "رقم السورة",
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyMedium,
-                ),
-              ),
-              Container(
-                width: 1.2,
-                height: 40,
-                color: theme.colorScheme.onPrimary,
-              ),
-              Expanded(
-                child: Text(
-                  "اسم السورة",
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyMedium,
-                ),
-              ),
-            ],
-          ),
-          Divider(
-            thickness: 1.2,
-            indent: 10,
-            endIndent: 10,
-            height: 5, //padding
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: (){
-                  Navigator.pushNamed  (context, QuranDetailsView.routeName,
-                  arguments:SuraDetails(suraName:SuraNames[index],suraNumber:"${index+1}"));
-                },
-                child: QuranItem(
-                SuraName: SuraNames[index],
-                SuraNumber:"${index+1}",
-                ),
-              ),
-              itemCount: SuraNames.length,
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            Image.asset("assets/images/quran_header.png"),
+            Divider(
+              color: theme.primaryColor,
+              thickness: 1.2,
+              indent: 10,
+              endIndent: 10,
+              height: 5, //padding
             ),
-          )
-        ],
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "رقم السورة",
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                ),
+                Container(
+                  width: 1.2,
+                  height: 40,
+                  color: theme.colorScheme.onPrimary,
+                ),
+                Expanded(
+                  child: Text(
+                    "اسم السورة",
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                ),
+              ],
+            ),
+            const Divider(
+              thickness: 1.2,
+              indent: 10,
+              endIndent: 10,
+              height: 5, //padding
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, QuranDetailsView.routeName,
+                        arguments: SuraDetails(
+                            suraName: SuraNames[index],
+                            suraNumber: "${index + 1}"));
+                  },
+                  child: QuranItem(
+                    SuraName: SuraNames[index],
+                    SuraNumber: "${index + 1}",
+                  ),
+                ),
+                itemCount: SuraNames.length,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 }
-class SuraDetails{
-  final String suraName;
-  final String suraNumber;
-  SuraDetails({required this.suraName,required this.suraNumber});
-}
-
-
-
-

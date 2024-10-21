@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:islamic/models/hadeth_content.dart';
 import 'package:islamic/modules/hadeth/hadeth_view.dart';
 import 'package:provider/provider.dart';
-
 import '../../core/provider/app_provider.dart';
-import '../../core/theme/application_theme.dart';
 
 class HadethDetailsView extends StatefulWidget {
   static String routeName = "HadethDetails";
@@ -23,23 +22,23 @@ class _HadethDetailsViewState extends State<HadethDetailsView> {
     var args = ModalRoute.of(context)?.settings.arguments as HadethContent;
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
-    var appProvider=Provider.of<AppProvider>(context);
+    var appProvider = Provider.of<AppProvider>(context);
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(appProvider.isDark()
               ? "assets/images/bg_dark.png"
               : "assets/images/bg3.jpg"),
-          //fit: BoxFit.cover,
+          fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("اسلامي"),
+          title: const Text("اسلامي"),
         ),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 40),
-          margin: EdgeInsets.only(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+          margin: const EdgeInsets.only(
             left: 30,
             right: 30,
             top: 30,
@@ -48,13 +47,12 @@ class _HadethDetailsViewState extends State<HadethDetailsView> {
           width: mediaQuery.width,
           height: mediaQuery.height,
           decoration: BoxDecoration(
-            color: theme.colorScheme.onBackground.withOpacity(0.8),
             borderRadius: BorderRadius.circular(25),
           ),
           child: Column(
             children: [
               Text(args.title, style: theme.textTheme.bodyLarge),
-              Divider(
+              const Divider(
                 thickness: 1.2,
                 indent: 30,
                 endIndent: 30,
